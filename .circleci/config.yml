@@ -49,7 +49,7 @@ jobs:
       - run: gradle test
       
       - store_test_results:
-          path: target/reports
+          path: build/reports
         
       - run:
           name: Send to CodeCov
