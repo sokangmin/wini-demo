@@ -40,8 +40,8 @@ jacocoTestReport {
 
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: [
-                            '**/DemoApplication'
+                    excludes: [
+                            '**/DemoApplication*'
                     ]
             //                + ePatterns
             )
@@ -69,7 +69,7 @@ jacocoTestCoverageVerification {
             }
 
             excludes = [
-                    'com.wini.demo.DemoApplication'
+                    'com.wini.demo.DemoApplication*'
             ]
             //+ ePatterns
         }
