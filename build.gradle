@@ -31,10 +31,32 @@ jacocoTestReport {
         xml.enabled true
     }
 
+    def ePatterns = []
+    for(pattern in "**/QA" .. "**/QZ"){
+        ePatterns.add(pattern+"*")
+    }
+
+    afterEvaluate {
+
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: [
+                            '**/DemoApplication'
+                    ]
+            //                + ePatterns
+            )
+        }))
+    }
+
     finalizedBy 'jacocoTestCoverageVerification'
 }
 
 jacocoTestCoverageVerification {
+    def ePatterns = []
+    for (pattern in "*.QA" .. "*.QZ") { // pattern = "*.QA","*.QB","*.QC", ... "*.QZ"
+        ePatterns.add(pattern + "*")
+    }
+
     violationRules {
         rule {
             enabled = true
@@ -47,8 +69,9 @@ jacocoTestCoverageVerification {
             }
 
             excludes = [
-                   // 'com.wini.demo.DemoApplication'
+                    'com.wini.demo.DemoApplication'
             ]
+            //+ ePatterns
         }
     }
 }
