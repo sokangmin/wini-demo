@@ -36,4 +36,4 @@ workflows:
   build-and-deploy:
     jobs:
       - my-job:
-        context: slack-secrets
+          context: slack-secrets
