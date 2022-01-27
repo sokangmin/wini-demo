@@ -3,6 +3,7 @@ orbs:
   slack: circleci/slack@4.3
   aws-cli: circleci/aws-cli@0.1.15
   aws-ecr: circleci/aws-ecr@6.12.2
+  codecov: codecov/codecov@3.2.2
 
 jobs:
   my-job:
