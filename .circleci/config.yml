@@ -1,8 +1,8 @@
 # Java Gradle CircleCI 2.0 configuration file
 # See: https://circleci.com/docs/2.0/language-java/
-version: 2.1
+version: 2
 orbs:
-  codecov: codecov/codecov@3.0.0
+  codecov: codecov/codecov@1.0.2
   slack: circleci/slack@4.6.2
   
 # Define a job to be invoked later in a workflow.
