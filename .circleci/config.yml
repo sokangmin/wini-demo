@@ -1,3 +1,26 @@
 version: 2.1
 orbs:
   slack: circleci/slack@4.3
+
+jobs:
+  my-job:
+    docker:
+      - image: circleci/openjdk:11-buster-node-browsers-legacy
+    working_directory: ~/repo/
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-
+      - run: gradle dependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+      - run: gradle test     
+      - store_test_results:
+          path: build/test-results
