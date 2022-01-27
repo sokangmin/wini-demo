@@ -27,7 +27,6 @@ jobs:
           path: build/test-results
       - slack/notify:
           event: fail
-          mentions: '@Frontend-team'
           template: basic_fail_1
       - slack/notify:
           event: pass
