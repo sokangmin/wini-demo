@@ -1,8 +1,6 @@
 version: 2.1
 orbs:
   slack: circleci/slack@4.3
-  aws-cli: circleci/aws-cli@0.1.15
-  aws-ecr: circleci/aws-ecr@6.12.2
   codecov: codecov/codecov@3.2.2
 
 jobs:
@@ -27,6 +25,13 @@ jobs:
       - run: gradle test     
       - store_test_results:
           path: build/test-results
+      - slack/notify:
+          event: fail
+          mentions: '@Frontend-team'
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
     
 workflows:
   build-and-deploy:
