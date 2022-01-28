@@ -25,8 +25,12 @@ jobs:
       - run: gradle test     
       - store_test_results:
           path: build/test-results
+      - run:
+          name: Send to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)
       - slack/notify:
           event: fail
+          mentions: '@EngineeringTeam'
           template: basic_fail_1
       - slack/notify:
           event: pass
